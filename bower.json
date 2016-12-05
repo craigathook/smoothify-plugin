@@ -1,0 +1,13 @@
+{
+  "name": "gsap-smoothify-plugin",
+  "homepage": "https://github.com/craigathook/smoothify-plugin",
+  "description": "An extremely simple GSAP Plugin for using a 'smoothify' property that forces elements to animate on sub-pixels.",
+  "main": "SmoothifyPlugin.js",
+  "keywords": [
+    "gsap",
+    "sub-pixel",
+    "smooth",
+    "plugin"
+  ],
+  "license": "MIT"
+}
