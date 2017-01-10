@@ -28,14 +28,22 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				return false;
 			}
 
-			this._target = target; 
+			this._target = target;
 
-			if (isIE || isSafari || isEdge) {
-				TweenLite.set(target, {"rotation": 0.01, "z": 0, "transformPerspective": 1000});
-			} else {
-				TweenLite.set(target, {"rotation": 0.01, "z": 0.1, "transformPerspective": 1000});
+			var tweenObject = {
+				"rotation": 0.01, 
+				"z": 0.1, 
+				"transformPerspective": 1000
 			}
 
+			if (isIE || isSafari || isEdge) {
+				tweenObject.z = 0;
+			} else if(isFirefox && target.style.outline == "") {
+				tweenObject.outline = "1px solid transparent";
+			}
+				
+			TweenLite.set(target, tweenObject);
+			
 			return true;
 		}
 	});
