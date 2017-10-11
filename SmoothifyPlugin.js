@@ -4,12 +4,15 @@
  * 
  * @author: Craig Albert
  **/
+var ua = navigator.userAgent.toLowerCase();
 var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
 var isFirefox = typeof InstallTrigger !== 'undefined';
 var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0 || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
 var isIE = /*@cc_on!@*/false || !!document.documentMode;
 var isEdge = !isIE && !!window.StyleMedia;
 var isChrome = !!window.chrome && !!window.chrome.webstore;
+var isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+var isAndroid = /(android)/i.test(navigator.userAgent);
 
 var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(global) !== "undefined") ? global : this || window; //helps ensure compatibility with AMD/RequireJS and CommonJS/Node
 (_gsScope._gsQueue || (_gsScope._gsQueue = [])).push( function() {
@@ -28,6 +31,12 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				return false;
 			}
 
+			
+			if (isiOS || isAndroid ) {
+				
+				return false;
+			}
+			
 			this._target = target;
 
 			var tweenObject = {
